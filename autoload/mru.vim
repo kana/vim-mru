@@ -75,8 +75,9 @@ endfunction
 
 
 function! mru#save()  "{{{2
-  if !filereadable(s:FILE_PATH)
-    call mkdir(fnamemodify(s:FILE_PATH, ':h'), 'p')
+  let directory = fnamemodify(s:FILE_PATH, ':h')
+  if !isdirectory(directory)
+    call mkdir(directory, 'p')
   endif
 
   call writefile(mru#list(), s:FILE_PATH)
